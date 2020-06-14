@@ -1,0 +1,47 @@
+//跑馬燈動畫
+.flowerArea{
+    width:100px;
+    height:100px;
+    &.flower-bottom-01{
+        @include transform(scale(0.8));
+        @include absolute(bottom -5% right -5%);
+    }
+    &.flower-bottom-02{
+        @include transform(scale(0.5));
+        @include absolute(bottom 17% right -2.5%);
+    }
+    &.flower-bottom-03{
+        @include transform(scale(1));
+        @include absolute(bottom 5% right 5%);
+    }
+    &.flower-bottom-04{
+        @include transform(scale(1));
+        @include absolute(bottom -5% right 20%);
+    }
+
+    .flower{
+        position:absolute;
+        &.flower-big{
+            @include transform-origin(4px 50px);
+            top:0;
+        }
+    }
+}
+
+@include keyframes(flowerOpen_01){
+    0%{
+        transform:rotate(-5deg) scale(0);
+    }
+    100%{
+        transform:rotate(-5deg) scale(1);
+    }
+}
+
+@include keyframes(flowerOpen_02){
+    0%{
+        transform:rotate(70deg) scale(0);
+    }
+    100%{
+        transform:rotate(70deg) scale(1);
+    }
+}

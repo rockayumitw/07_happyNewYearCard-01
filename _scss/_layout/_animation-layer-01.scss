@@ -1,0 +1,138 @@
+    //第一層動畫
+    .animation-layer-01{
+        width: 600px;
+        height: 600px;
+        overflow: hidden;
+        @include fixed(top 50% left 50%);
+        @include imgBg($default_Background,false,false,false,cover,no-repeat,center center);
+        @include z-index(centerArea);
+        @include transform(translateX(-50%) translateY(-50%) scale(1));
+        @include media-max("md") {
+            @include transform(translateX(-50%) translateY(-50%) scale(1));
+          }
+          @include media-max("sm") {
+            @include transform(translateX(-50%) translateY(-50%) scale(0.65));
+          }
+          @include media-max("xs") {
+            @include transform(translateX(-50%) translateY(-50%) scale(0.52));
+          }
+          @include media-max("xxs") {
+            @include transform(translateX(-50%) translateY(-50%) scale(0.52));
+          }
+        .lamp{
+            &.lamp-center{
+                width:345px;
+                height:578px;
+                @include absolute(top -1% left 23%);
+                @include transform-origin(175px 0px);
+                @include transform(rotate(-50deg));
+                @include z-index(lamp_center);
+                @include imgBg($lamp_img,false,false,false,contain,no-repeat,center center);
+                &.active{
+                    @include imgBg($lamp_img_back,false,false,false,contain,no-repeat,center center); 
+                }
+            }
+
+            &.lamp-left{
+                @include absolute(top -27% left 1%);
+                @include transform-origin(97px 0px);
+                @include transform(rotate(50deg));
+                @include z-index(lamp_both);
+                @include animation(lampMove_left, 3s, $timing-function: linear, $delay: false, $iteration-count: infinite , $direction: alternate, $fill-mode:forwards);
+            }
+            &.lamp-right{
+                @include absolute(top 0% right 4%);
+                @include transform(rotate(-50deg));
+                @include transform-origin(97px 0px);
+                @include z-index(lamp_both);
+                @include animation(lampMove_right, 3s, $timing-function: linear, $delay: false, $iteration-count: infinite , $direction: alternate, $fill-mode:forwards);
+            }
+        }
+
+        .slong{
+            @include absolute(left 5% bottom 7%);
+        }
+
+        .seal{
+            @include absolute(top 2% right 19%);
+        }
+
+        .cloud{
+            position: absolute;
+            &.cloud-top{
+                top: 25%;
+                right: 4%;
+                @include z-index(cloud_top);
+                @include animation(cloudMove, 8s, $timing-function: linear, $delay: false, $iteration-count: infinite , $direction: normal, $fill-mode:forwards);
+            }
+            &.cloud-center{
+                top: 58%;
+                right: 0%;
+                @include z-index(cloud_bottom);
+                @include animation(cloudMove, 15s, $timing-function: linear, $delay: false, $iteration-count: infinite , $direction: normal, $fill-mode:forwards);
+            }
+            &.cloud-bottom{
+                top: 48%;
+                right: 0%;
+                @include z-index(cloud_center);
+                @include animation(cloudMove, 10s, $timing-function: linear, $delay: false, $iteration-count: infinite , $direction: normal, $fill-mode:forwards);
+            }
+        }
+    }
+
+    @include keyframes(lampMove_center){
+        0%{
+           transform:rotate()
+         }
+         100%{
+            top:-20%
+         }
+    }
+
+@include keyframes(lampMove_left){
+    0%{
+        top: -27%;
+     }
+     100%{
+        top:-20%
+     }
+}
+
+@include keyframes(lampMove_right){
+    0%{
+        top: 0%;
+     }
+     100%{
+        top:-7%
+     }
+}
+
+
+//flower動畫
+@include keyframes(flowerBig){
+    0%{
+       @include transform(scale(0) rotate(0deg));
+       opacity:0;
+    }
+    100%{
+        @include transform(scale(1) rotate(180deg));
+        opacity:1;
+    }
+}
+@include keyframes(flowerSmall){
+    0%{
+       @include transform(rotate(0deg));
+    }
+    100%{
+        @include transform(rotate(-360deg));
+    }
+}
+
+@include keyframes(cloudMove){
+    0% {
+        right: -10%;
+    }
+    100% {
+        right: 100%;
+    } 
+}
